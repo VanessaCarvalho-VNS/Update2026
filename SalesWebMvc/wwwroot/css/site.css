@@ -30,17 +30,19 @@ main {
 
 
 
+
 /* Nome do sistema */
 .navbar-brand {
-    font-size: 1.6rem;
-    font-weight: 700;
+    font-size: 1.25rem;
+    font-weight: 600;
 }
 
+/* Links do menu */
 .navbar-nav .nav-link {
     transition: all 0.3s ease;
-    font-size: 1.35rem;
-    font-weight: 600;
-    padding: 0.9rem 1.4rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.6rem 1rem;
 }
 
     .navbar-nav .nav-link:hover {
@@ -48,15 +50,20 @@ main {
         border-radius: 6px;
     }
 
+/* Mobile */
 @media (max-width: 768px) {
-    .navbar-nav .nav-link {
+    .navbar-brand {
         font-size: 1.15rem;
-        padding: 0.7rem 1rem;
+    }
+
+    .navbar-nav .nav-link {
+        font-size: 0.95rem;
+        padding: 0.5rem 0.8rem;
     }
 }
 
 .table thead tr.thead-purple th {
-    background-color: #6f42c1 !important; /* roxo */
+    background-color: #6f42c1 !important;  /*roxo*/ 
     color: white !important;
 }
 
@@ -92,18 +99,64 @@ main {
         color: white;
     }
 
-/* Fonte da tabela */
+ Fonte da tabela 
 .table {
     font-size: 1.1rem;
 }
 
-    /* Cabeçalho da tabela */
+     Cabeçalho da tabela 
     .table thead th {
         font-size: 1.15rem;
         font-weight: 600;
     }
 
-    /* Corpo da tabela */
+     Corpo da tabela 
     .table tbody td {
         font-size: 1.05rem;
     }
+
+/* ===== CARD ===== */
+.card-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+/* ===== BOTÃO NOVO ===== */
+.card-body .btn {
+    font-size: 0.9rem;
+}
+
+/* ===== TABELA ===== */
+.table {
+    font-size: 0.9rem;
+}
+
+    .table thead th {
+        font-size: 0.9rem;
+        font-weight: 600;
+        vertical-align: middle;
+    }
+
+    .table tbody td {
+        font-size: 0.85rem;
+        vertical-align: middle;
+    }
+
+    /* Cabeçalho roxo */
+    .table thead tr.thead-purple th {
+        background-color: #6f42c1 !important;
+        color: #fff !important;
+    }
+
+    /* Hover */
+    .table tbody tr:hover {
+        background-color: #f3eefe;
+    }
+
+    /* ===== BOTÕES DA TABELA ===== */
+    .table .btn {
+        font-size: 0.75rem;
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+
