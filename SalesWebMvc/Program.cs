@@ -1,28 +1,59 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.AspNetCore.Localization;
+using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 using SalesWebMvc.Data;
+using SalesWebMvc.Models;
+
+
+
 var builder = WebApplication.CreateBuilder(args);
 
 // DbContext
 builder.Services.AddDbContext<SalesWebMvcContext>(options =>
     options.UseMySql(
-        builder.Configuration.GetConnectionString("SalesWebMvcContext"),
+        builder.Configuration.GetConnectionString("SalesWebMVCContext"),
         ServerVersion.AutoDetect(
-            builder.Configuration.GetConnectionString("SalesWebMvcContext")
+            builder.Configuration.GetConnectionString("SalesWebMVCContext")
         )
     )
 );
 
-// Add services to the container.
+// Seeding
+builder.Services.AddScoped<SeedingService>();
+
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();
 
+// 🔥 SEED AQUI
+using (var scope = app.Services.CreateScope())
+{
+    var seedingService = scope.ServiceProvider
+        .GetRequiredService<SeedingService>();
+
+    seedingService.Seed();
+}
+
 // Configure the HTTP request pipeline.
-if (!app.Environment.IsDevelopment())
+
+var enUS = new CultureInfo("en-US");
+var localizationOptions = new RequestLocalizationOptions
+{
+    DefaultRequestCulture = new RequestCulture(enUS),
+    SupportedCultures = new List<CultureInfo> { enUS },
+    SupportedUICultures = new List<CultureInfo> { enUS }
+};
+
+app.UseRequestLocalization(localizationOptions);
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+
+}
+else
 {
     app.UseExceptionHandler("/Home/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
@@ -30,7 +61,6 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(
