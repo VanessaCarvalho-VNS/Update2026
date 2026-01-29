@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
 using SalesWebMvc.Data;
-using SalesWebMvc.Models;
+using SalesWebMvc.Services;
 
 
 
@@ -20,6 +20,9 @@ builder.Services.AddDbContext<SalesWebMvcContext>(options =>
 
 // Seeding
 builder.Services.AddScoped<SeedingService>();
+builder.Services.AddScoped<SellerService>();
+
+
 
 builder.Services.AddControllersWithViews();
 
