@@ -19,6 +19,7 @@ html {
 
 body {
     margin-bottom: 60px;
+    background-color: #f0f2f5;
 }
 
 
@@ -159,4 +160,49 @@ main {
         padding: 4px 8px;
         border-radius: 6px;
     }
+
+.card.sales-card {
+    border-radius: 10px;
+}
+
+.card {
+    border-radius: 10px;
+    border: 1px solid #e0e0e0;
+}
+
+.card-header {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.rounded-table {
+    border-radius: 10px;
+    overflow: hidden; /* essencial para arredondar corretamente */
+}
+
+/* Card moderno */
+.card-modern {
+    border-radius: 12px;
+    border: none;
+    background-color: #f8f9fa; /* neutro, não branco puro */
+}
+
+/* Header do card */
+.card-header-modern {
+    background-color: #e9ecef;
+    border-bottom: 1px solid #dee2e6;
+    border-radius: 12px 12px 0 0;
+    padding: 1rem 1.25rem;
+}
+
+/* Tabela */
+.table-modern thead th {
+    border-bottom: 2px solid #dee2e6;
+    color: white;
+    font-weight: 600;
+}
+
+
+
+
 

@@ -1,14 +1,29 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "About";
 }
 
-<h2>@ViewData["Title"]</h2>
-<h3>@ViewData["Message"]</h3>
+<h2 class="mb-4">@ViewData["Title"]</h2>
 
-<p>Aluno(a) @ViewData["Aluno(a)"]</p>
-   
+<div class="card shadow-sm">
+    <div class="card-body">
+        <h4 class="card-title mb-3">
+            @ViewData["Message"]
+        </h4>
 
-<address>
-    <strong>More information:</strong> <a href="http://github.com/VanessaCarvalho-VNS">github.com/VanessaCarvalho-VNS</a>
-</address>
+        <p class="mb-3">
+            <strong>Aluno(a):</strong> @ViewData["Aluno(a)"]
+        </p>
+
+        <hr />
+
+        <p class="mb-2">
+            <strong>More information</strong>
+        </p>
+
+        <a href="https://github.com/VanessaCarvalho-VNS"
+           target="_blank"
+           class="btn btn-dark rounded">
+            GitHub Profile
+        </a>
+    </div>
+</div>

@@ -4,67 +4,62 @@
     ViewData["Title"] = "Sellers";
 }
 
-<h1>@ViewData["Title"]</h1>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="mb-0">@ViewData["Title"]</h2>
 
-<p>
-    <a asp-action="Create" class="btn btn-primary btn-create">
-        Create New
+    <a asp-action="Create" class="btn btn-primary px-2 rounded">
+         Create New
     </a>
-</p>
+</div>
 
-<table class="table table-striped table-hover">
-    <thead>
-        <tr class="thead-purple">
-            <th>
-                @Html.DisplayNameFor(Model => Model.Name)
-            </th>
+<div class="card shadow-sm">
+    <div class="card-body p-0">
 
-            <th>
-                @Html.DisplayNameFor(Model => Model.Email)
-            </th>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0 rounded-table">
+                <thead class="table-light">
+                    <tr class="thead-purple">
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.BirthDate)</th>
+                        <th>@Html.DisplayNameFor(model => model.BaseSalary)</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
 
-            <th>
-                @Html.DisplayNameFor(Model => Model.BirthDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(Model => Model.BaseSalary)
-            </th>
-            <th class="text-center">Ações</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr class="thead-purple">
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+                            <td>@item.BirthDate.ToString("dd/MM/yyyy")</td>
+                            <td>@item.BaseSalary.ToString("F2")</td>
+                            <td class="text-center">
+                                <a asp-action="Edit"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-primary me-1">
+                                    Edit
+                                </a>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
+                                <a asp-action="Details"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-info me-1">
+                                    Details
+                                </a>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BirthDate)
-                </td>
+                                <a asp-action="Delete"
+                                   asp-route-id="@item.Id"
+                                   class="btn btn-sm btn-danger">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
 
-                <td>
-                    @Html.DisplayFor(modelItem => item.BaseSalary)
-                </td>
-                <td class="text-center">
-                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary me-1">
-                        Edit
-                    </a>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info me-1">
-                        Details
-                    </a>
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
-                        Delete
-                    </a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
+    </div>
+</div>
 
