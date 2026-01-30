@@ -1,6 +1,82 @@
-﻿
+﻿@model IEnumerable<IGrouping<Department, SalesRecord>>
+
 @{
     ViewData["Title"] = "Grouping Search";
 }
 
 <h2 class="mb-4">@ViewData["Title"]</h2>
+
+<!-- Card de Filtro -->
+<div class="card shadow-sm mb-4">
+    <div class="card-body">
+        <h5 class="card-title mb-3">Filter by date</h5>
+
+        <form asp-action="GroupingSearch" method="get" class="row g-3">
+            <div class="col-md-4">
+                <label class="form-label">Min Date</label>
+                <input type="date"
+                       class="form-control"
+                       name="minDate"
+                       value="@ViewData["minDate"]" />
+            </div>
+
+            <div class="col-md-4">
+                <label class="form-label">Max Date</label>
+                <input type="date"
+                       class="form-control"
+                       name="maxDate"
+                       value="@ViewData["maxDate"]" />
+            </div>
+
+            <div class="col-md-4 d-flex align-items-end">
+                <button type="submit" class="btn btn-primary px-4 rounded">
+                    Filter
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Cards por Departamento -->
+@foreach (var departmentGroup in Model)
+{
+    <div class="card shadow-sm mb-4">
+        <div class="card-header bg-primary text-white">
+            <strong>
+                Department: @departmentGroup.Key.Name |
+                Total sales:
+                @departmentGroup.Sum(x => x.Amount).ToString("F2")
+            </strong>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Date</th>
+                            <th>Amount</th>
+                            <th>Seller</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in departmentGroup)
+                        {
+                            <tr>
+                                <td>@item.Date.ToString("dd/MM/yyyy")</td>
+                                <td>@item.Amount.ToString("F2")</td>
+                                <td>@item.Seller!.Name</td>
+                                <td>
+                                    <span class="badge bg-secondary">
+                                        @item.Status
+                                    </span>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}
